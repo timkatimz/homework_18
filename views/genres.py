@@ -10,11 +10,11 @@ genre_ns = Namespace("genres")
 class GenresView(Resource):
     def get(self):
         genres = genre_dao.get_all()
-        return genre_schema.dump(genres, many=True)
+        return genre_schema.dump(genres, many=True), 200
 
 
 @genre_ns.route("/<int:gid>")
 class GenreView(Resource):
     def get(self, gid):
         genre = genre_dao.get_one(gid)
-        return genre_schema.dump(genre)
+        return genre_schema.dump(genre), 200

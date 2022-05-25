@@ -10,11 +10,11 @@ director_ns = Namespace("directors")
 class DirectorsView(Resource):
     def get(self):
         directors = director_dao.get_all()
-        return director_schema.dump(directors, many=True)
+        return director_schema.dump(directors, many=True), 200
 
 
 @director_ns.route("/<int:did>")
 class DirectorView(Resource):
     def get(self, did):
         director = director_dao.get_one(did)
-        return director_schema.dump(director)
+        return director_schema.dump(director), 200
