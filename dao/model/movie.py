@@ -24,22 +24,9 @@ class MovieSchema(Schema):
     trailer = fields.Str()
     year = fields.Int()
     rating = fields.Float()
-    director = fields.Str()
-    genre = fields.Str()
-
-
-movie_schema = MovieSchema()
-
-
-class SecondMovieSchema(Schema):
-    id = fields.Int()
-    title = fields.Str()
-    description = fields.Str()
-    trailer = fields.Str()
-    year = fields.Int()
-    rating = fields.Float()
     director_id = fields.Int()
     genre_id = fields.Int()
 
 
-second_movie_schema = SecondMovieSchema()
+movie_schema = MovieSchema()
+

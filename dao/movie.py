@@ -1,5 +1,3 @@
-from dao.model.director import Director
-from dao.model.genre import Genre
 from dao.model.movie import Movie
 
 
@@ -8,17 +6,10 @@ class MovieDAO:
         self.session = session
 
     def get_all(self):
-        return self.session.query(Movie.title,
-                                  Movie.description,
-                                  Movie.year,
-                                  Movie.rating,
-                                  Movie.trailer,
-                                  Genre.name.label("genre"),
-                                  Director.name.label("director")).join(Movie.genre).join(Movie.director)
+        return self.session.query(Movie)
 
     def get_one(self, mid):
-        movies = self.get_all()
-        return movies.filter(Movie.id == mid).one()
+        return self.session.query(Movie).get_or_404(mid)
 
     def get_by_director(self, did):
         movies = self.get_all()

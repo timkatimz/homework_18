@@ -10,3 +10,6 @@ class Genre(db.Model):
 
 class GenreSchema(Schema):
     name = fields.Str()
+
+
+genre_schema = GenreSchema()

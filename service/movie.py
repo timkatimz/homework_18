@@ -1,4 +1,3 @@
-from dao.model.movie import second_movie_schema, Movie
 from dao.movie import MovieDAO
 
 
