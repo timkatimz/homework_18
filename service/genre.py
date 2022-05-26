@@ -5,5 +5,5 @@ class GenreService:
     def get_all(self):
         return self.genre_dao.get_all()
 
-    def get_one(self, mid):
-        return self.genre_dao.get_one(mid)
+    def get_one(self, gid):
+        return self.genre_dao.get_one(gid)

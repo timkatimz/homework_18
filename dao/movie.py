@@ -1,3 +1,5 @@
+from sqlalchemy.exc import NoResultFound
+
 from dao.model.movie import Movie
 
 
@@ -6,21 +8,24 @@ class MovieDAO:
         self.session = session
 
     def get_all(self):
+        return self.session.query(Movie).all()
+
+    def filters(self):
         return self.session.query(Movie)
 
     def get_one(self, mid):
-        return self.session.query(Movie).get_or_404(mid)
+        return self.session.query(Movie).filter(Movie.id == mid).one()
 
     def get_by_director(self, did):
-        movies = self.get_all()
+        movies = self.filters()
         return movies.filter(Movie.director_id == did).all()
 
     def get_by_genre(self, gid):
-        movies = self.get_all()
+        movies = self.filters()
         return movies.filter(Movie.genre_id == gid).all()
 
     def get_by_year(self, year):
-        movies = self.get_all()
+        movies = self.filters()
         return movies.filter(Movie.year == year).all()
 
     def create(self, data):
@@ -33,6 +38,9 @@ class MovieDAO:
         self.session.commit()
 
     def delete(self, mid):
-        movie = self.session.query(Movie).get(mid)
+        try:
+            movie = self.get_one(mid)
+        except NoResultFound as e:
+            return f"{e}"
         self.session.delete(movie)
         self.session.commit()

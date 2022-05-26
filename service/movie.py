@@ -9,6 +9,9 @@ class MovieService:
     def get_all(self):
         return self.movie_dao.get_all()
 
+    def filters(self):
+        return self.movie_dao.filters()
+
     def get_one(self, mid):
         return self.movie_dao.get_one(mid)
 
@@ -38,11 +41,3 @@ class MovieService:
 
     def delete(self, mid):
         return self.movie_dao.delete(mid)
-
-        movie.title = data.get("title")
-        movie.description = data.get("description")
-        movie.trailer = data.get("trailer")
-        movie.year = data.get("year")
-        movie.rating = data.get("rating")
-        movie.genre_id = data.get("genre_id")
-        movie.director_id = data.get("director_id")

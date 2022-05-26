@@ -9,5 +9,5 @@ class DirectorService:
     def get_all(self):
         return self.director_dao.get_all()
 
-    def get_one(self, mid):
-        return self.director_dao.get_one(mid)
+    def get_one(self, did):
+        return self.director_dao.get_one(did)

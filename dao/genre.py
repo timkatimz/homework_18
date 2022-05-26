@@ -8,5 +8,6 @@ class GenreDAO:
     def get_all(self):
         return self.session.query(Genre).all()
 
-    def get_one(self, did):
-        return self.session.query(Genre).get(did)
+    def get_one(self, gid):
+        return self.session.query(Genre).filter(Genre.id == gid).one()
+
